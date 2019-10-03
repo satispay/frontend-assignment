@@ -1,0 +1,20 @@
+{
+  "name": "frontend_challenge",
+  "author": {
+    "name": "Walter Barbagallo",
+    "email": "walter.barbagallo@satispay.com"
+  },
+  "contributors": [
+    {
+      "name": "Alessio Dionisi",
+      "email": "alessio.dionisi@satispay.com"
+    }
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true
+}
