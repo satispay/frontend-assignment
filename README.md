@@ -41,7 +41,7 @@ Use components in `antd` library to create a page with this capabilities:
   - name
   - type
   - classification
-- if `hasNexPage` is true add the possibility to load more results.
+- if `hasNextPage` is true add the possibility to load more results.
 
 ## Submission
 
