@@ -7,6 +7,7 @@ type Pokemon {
   id: ID!
   name: String
   types: [String]
+  classification: String
 }
 
 type PokemonEdge {
