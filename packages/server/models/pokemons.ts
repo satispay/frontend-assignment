@@ -50,17 +50,33 @@ export function query(args: {
 }
 
 export function queryByType(args: {
-  type: string;
+  after?: string;
   limit?: number;
+  type?: string;
 }): Connection<Pokemon> {
-  const { type, limit = SIZE } = args;
+  const { after, limit = SIZE, type } = args;
 
-  const filterByType: (as: Pokemon[]) => Pokemon[] = 
-    type === undefined ? identity : A.filter(poke => poke.types.includes(type))
-
+  const filterByType: (as: Pokemon[]) => Pokemon[] =
+    type === undefined
+      ? identity
+      : A.filter(p => p.types.indexOf(type) > -1);
+  
+    const sliceByAfter: (as: Pokemon[]) => Pokemon[] =
+    after === undefined
+      ? identity
+      : as =>
+          pipe(
+            as,
+            A.findIndex(a => a.id === after),
+            O.map(a => a + 1),
+            O.fold(() => as, idx => as.slice(idx))
+          );
+  
   const results: Pokemon[] = pipe(
     data,
     filterByType,
+    sliceByAfter,
+    // slicing limit + 1 because the `toConnection` function should known the connection size to determine if there are more results
     slice(0, limit + 1)
   );
   return toConnection(results, limit);
