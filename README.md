@@ -1,3 +1,19 @@
+# How To Use
+
+## Installation
+
+#### 1. Install dependencies
+
+`yarn install`
+
+#### 2. Run local server
+
+`yarn server`
+
+#### 3. Run client
+
+`yarn client`
+
 # Assignment for Frontend Position
 
 In Satispay one of the main task for a frontend developer is to build useful interfaces in order to display, search and interact with data.
