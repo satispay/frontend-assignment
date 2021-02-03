@@ -6,17 +6,14 @@ import ApolloClient, { gql } from 'apollo-boost';
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import PokeTableWrapper from './components/PokeTableWrapper';
 
-
 const client = new ApolloClient({
-  uri: 'http://localhost:4000'
-})
-
+  uri: 'http://localhost:4000',
+});
 
 function App() {
-
   return (
-    <ApolloProvider client={client} >
-      <div className="App">
+    <ApolloProvider client={client}>
+      <div className='App'>
         <h1>Interactive Pokédex</h1>
         <PokeTableWrapper />
       </div>
