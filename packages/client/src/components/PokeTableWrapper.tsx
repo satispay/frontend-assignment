@@ -71,8 +71,8 @@ function PokeTableWrapper() {
     <>
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
-        <Button onClick={handleLoadMore}>Next 10 Pokémon</Button>
       </div>
+      <Button onClick={handleLoadMore}>Next 10 Pokémon</Button>
     </>
   );
 }
