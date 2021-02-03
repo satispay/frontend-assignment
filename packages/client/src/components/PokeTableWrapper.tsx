@@ -50,30 +50,28 @@ function PokeTableWrapper() {
     });
   }
 
+  const handleLoadMore = () => {
+    const { endCursor, hasNextPage } = data.pokemons.pageInfo;
+
+    fetchMore({
+      variables: { after: endCursor, hasNextPage },
+      updateQuery: (prevResult: any, { fetchMoreResult }) => {
+        // Return nothing when there are no more pokemons after current ones
+        if (hasNextPage === false) return;
+        fetchMoreResult.pokemons.edges = [
+          ...prevResult.pokemons.edges,
+          ...fetchMoreResult.pokemons.edges,
+        ];
+        return fetchMoreResult;
+      },
+    });
+  };
+
   return (
     <>
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
-        <Button
-          onClick={() => {
-            const { endCursor } = data.pokemons.pageInfo;
-
-            fetchMore({
-              variables: { after: endCursor },
-              updateQuery: (prevResult: any, { fetchMoreResult }) => {
-                // Return nothing when there are no more pokemons after current ones
-                if (!fetchMoreResult) return;
-                fetchMoreResult.pokemons.edges = [
-                  ...prevResult.pokemons.edges,
-                  ...fetchMoreResult.pokemons.edges,
-                ];
-                return fetchMoreResult;
-              },
-            });
-          }}
-        >
-          Load More
-        </Button>
+        <Button onClick={handleLoadMore}>Load More</Button>
       </div>
     </>
   );
