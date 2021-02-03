@@ -38,9 +38,9 @@ function PokeTable() {
     if (loading === false) {
         result = data.pokemons.edges.map((edge: PokemonEdge) => {
         return { key: edge.node.id, name: edge.node.name, types: edge.node.types, classification: edge.node.classification }
-    });
+      });
     }
- 
+
 
     const columns = [
     {
@@ -71,10 +71,8 @@ function PokeTable() {
     if (loading) return <p>Loading...</p>
     if (error) return <p>Something went wrong</p>
 
-    return (
-        <>
-            <Table dataSource={result} columns={columns} />
-        </>
+  return (
+      <Table dataSource={result} columns={columns} />
     )
 }
 

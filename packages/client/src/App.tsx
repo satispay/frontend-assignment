@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import 'antd/dist/antd.css';
 import ApolloClient, { gql } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { Typography } from 'antd';
@@ -18,7 +19,9 @@ function App() {
     <ApolloProvider client={client} >
       <div className="App">
         <Title>Interactive Pokédex</Title>
-        <PokeTable />
+        <div className="PokeTable" >
+          <PokeTable />
+        </div>
       </div>
     </ApolloProvider>
   );
