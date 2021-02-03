@@ -72,7 +72,7 @@ function PokeTable() {
     if (error) return <p>Something went wrong</p>
 
   return (
-      <Table dataSource={result} columns={columns} />
+      <Table dataSource={result} columns={columns} pagination={false} />
     )
 }
 
