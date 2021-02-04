@@ -1,9 +1,8 @@
 import React from 'react';
 import './App.css';
 import 'antd/dist/antd.css';
-import ApolloClient, { gql } from 'apollo-boost';
-// import { ApolloProvider, useQuery } from 'react-apollo';
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 import PokeTableWrapper from './components/PokeTableWrapper';
 
 const client = new ApolloClient({
