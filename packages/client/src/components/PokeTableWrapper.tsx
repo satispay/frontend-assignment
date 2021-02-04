@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
+import SearchBox from './SearchBox';
 
 type PokemonEdge = {
   node: Pokemon;
@@ -69,6 +70,7 @@ function PokeTableWrapper() {
 
   return (
     <>
+      <SearchBox />
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
       </div>
