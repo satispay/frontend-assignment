@@ -16,8 +16,8 @@ type Pokemon = {
   classification: string;
 };
 
-const getPokemonQuery = gql`
-  query pokeQuery($after: ID) {
+const GET_POKEMON_QUERY = gql`
+  query GetPokemonQuery($after: ID) {
     pokemons(after: $after) {
       edges {
         node {
@@ -36,7 +36,7 @@ const getPokemonQuery = gql`
 `;
 
 function PokeTableWrapper() {
-  const { loading, error, data, fetchMore } = useQuery(getPokemonQuery, {
+  const { loading, error, data, fetchMore } = useQuery(GET_POKEMON_QUERY, {
     variables: { after: '000' },
   });
   let result;
