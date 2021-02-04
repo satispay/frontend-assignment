@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { gql } from 'apollo-boost';
-import { useLazyQuery } from '@apollo/react-hooks';
+import { useLazyQuery, useQuery } from '@apollo/react-hooks';
 
-const searchPokeName = gql`
-  query searchPokeNameQuery($q: String!) {
+const SEARCH_NAME_QUERY = gql`
+  query SearchNameQuery($q: String!) {
     pokemons(q: $q) {
       edges {
         node {
@@ -20,27 +20,47 @@ const searchPokeName = gql`
     }
   }
 `;
+type PokemonEdge = {
+  node: Pokemon;
+};
+
+type Pokemon = {
+  id: string;
+  name: string;
+  types: Array<string>;
+  classification: string;
+};
 
 function SearchBox() {
-  const [searchFilter, setSearchFilter] = useState<string>('');
-  const [executeSearch, { data }] = useLazyQuery(searchPokeName);
-
-  console.log(searchFilter);
+  const [searchText, setSearchText] = useState<string>('');
+  // const [executeSearch, { loading, data }] = useLazyQuery(SEARCH_NAME_QUERY);
+  const { loading, data } = useQuery(SEARCH_NAME_QUERY, {
+    variables: { q: searchText },
+  });
 
   return (
     <>
       <div>
-        <input type='text' onChange={(e) => setSearchFilter(e.target.value)} />
-        <button
+        <input
+          type='text'
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setSearchText(event.target.value)
+          }
+        />
+        {/* <button
           onClick={() =>
             executeSearch({
-              variables: { filter: searchFilter },
+              variables: { filter: searchText },
             })
           }
         >
           Search
-        </button>
+        </button> */}
       </div>
+      {data &&
+        data.pokemons.edges.map((edge: PokemonEdge) => (
+          <li key={edge.node.id}>{edge.node.name}</li>
+        ))}
     </>
   );
 }
