@@ -4,19 +4,9 @@ import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
 import { pokeTypes } from '../constants/index';
+import { PokemonEdge } from '../Types/index';
 
 const { Option } = Select;
-
-type PokemonEdge = {
-  node: Pokemon;
-};
-
-type Pokemon = {
-  id: string;
-  name: string;
-  types: Array<string>;
-  classification: string;
-};
 
 const FILTER_TYPE_QUERY = gql`
   query FilterTypeQuery($type: String!, $after: ID) {
