@@ -1,9 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Button, Input, Radio, RadioChangeEvent } from 'antd';
+import { Button, Input } from 'antd';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
-import FilterType from './FilterType';
 
 type PokemonEdge = {
   node: Pokemon;
@@ -37,13 +36,6 @@ const SEARCH_NAME_QUERY = gql`
 
 function PokeTableWrapper() {
   const [searchText, setSearchText] = useState<string>('');
-  const [filterType, setFilterType] = useState<string>('byName');
-
-  const onRadioChange = (e: RadioChangeEvent) => {
-    console.log('radio checked', e.target.value);
-    setFilterType(e.target.value);
-  };
-
   const { loading, error, data, fetchMore } = useQuery(SEARCH_NAME_QUERY, {
     variables: { after: '000', q: searchText },
   });
@@ -79,29 +71,14 @@ function PokeTableWrapper() {
 
   return (
     <>
-      <div>
-        <Radio.Group
-          defaultValue='byName'
-          buttonStyle='solid'
-          onChange={onRadioChange}
-        >
-          <Radio.Button value='byName'>Name</Radio.Button>
-          <Radio.Button value='byType'>Type</Radio.Button>
-        </Radio.Group>
-      </div>
-
-      {filterType === 'byType' && <FilterType />}
-      {filterType === 'byName' && (
-        <Input
-          type='text'
-          placeholder='Search Pokémon by name...'
-          style={{ width: 300 }}
-          onChange={(event: ChangeEvent<HTMLInputElement>) =>
-            setSearchText(event.target.value)
-          }
-        />
-      )}
-
+      <Input
+        type='text'
+        placeholder='Search Pokémon by name...'
+        style={{ width: 300 }}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          setSearchText(event.target.value)
+        }
+      />
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
       </div>
