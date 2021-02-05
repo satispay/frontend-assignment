@@ -7,7 +7,7 @@
 The project is a single page (and a server app) for querying and filtering a dataset of Pokémons hardcoded in the project.
 
 The target of audience are other Satispay colleagues that can interact with internal dashboard/consoles.
-The browser compatibility is assumed for the latest version of Google Chrome.
+The browser compatibility is assumed for the latest version of `Google Chrome`.
 
 ## Installation
 
@@ -74,4 +74,4 @@ My challenge towards the end was to conditionally render the search bar or dropd
 
 I am aware that these components are similar so refactoring them would be best for cleaner code.
 
-##### Thank you for your time in reviewing my submission and looking forward to your feedback.
+#### Thank you for your time in reviewing my submission and looking forward to your feedback.
