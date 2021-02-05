@@ -37,7 +37,7 @@ const FILTER_TYPE_QUERY = gql`
   }
 `;
 
-function PokeTableWrapper() {
+function FilterByType() {
   const [typeFilter, setTypeFilter] = useState<string>('Normal');
 
   const { loading, error, data, fetchMore } = useQuery(FILTER_TYPE_QUERY, {
@@ -99,4 +99,4 @@ function PokeTableWrapper() {
   );
 }
 
-export default PokeTableWrapper;
+export default FilterByType;
