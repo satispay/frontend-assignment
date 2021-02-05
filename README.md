@@ -2,7 +2,7 @@
 
 ## Introduction
 
-For this assignment what you will build is a simple page (and a server app) for querying and filtering a dataset of Pokémons hardcoded in the project.
+The project is a single page (and a server app) for querying and filtering a dataset of Pokémons hardcoded in the project.
 
 The target of audience are other Satispay colleagues that can interact with internal dashboard/consoles.
 The browser compatibility is assumed for the latest version of Google Chrome.
@@ -63,10 +63,10 @@ In the bullet points, I describe how I met the challenges.
 * User can load more Pokemon table rows if `hasNextPage` is true
   - I use the [`fetchMore`](https://www.apollographql.com/docs/react/pagination/core-api/#the-fetchmore-function) and [`updateQuery`](https://www.apollographql.com/docs/react/caching/advanced-topics/) functions from Apollo Client to combine the previous result of Pokemon to the subsequent ones based on the `endCursor` variable in either the `pokemons` or `pokemonsByType` query
 
-## **Evaluation**
+## Challenges and Improvements
 
-Our goal is to find answers to those questions:
+My challenge towards the end was to conditionally render the search bar or dropdown filter based on the user's filtering preference: `byName` or `byType`. I first approached by using a variable to store the `gql` query to be passed in the `useQuery` hook based on the state of either `byName` or `byType`. This approach would break my code to display more Pokemon when the user clicked on the `Show More` button. Therefore, I decided to have two separate components: `FilterByName` and `FilterByType`.
 
-- Do you understand the TypeScript language and more in general web technologies?
-- Can you design interfaces that are clear and easy to use?
-- Do you master your working environment?
+I am aware that these components are similar so refactoring them would be best for cleaner code.
+
+##### Thank you for your time in reviewing my submission and look forward to your feedback
