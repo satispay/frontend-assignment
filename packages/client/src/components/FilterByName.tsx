@@ -34,7 +34,7 @@ const SEARCH_NAME_QUERY = gql`
   }
 `;
 
-function PokeTableWrapper() {
+function FilterByName() {
   const [searchText, setSearchText] = useState<string>('');
   const { loading, error, data, fetchMore } = useQuery(SEARCH_NAME_QUERY, {
     variables: { after: '000', q: searchText },
@@ -87,4 +87,4 @@ function PokeTableWrapper() {
   );
 }
 
-export default PokeTableWrapper;
+export default FilterByName;
