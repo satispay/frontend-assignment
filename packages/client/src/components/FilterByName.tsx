@@ -31,14 +31,11 @@ function FilterByName() {
   }
 
   const handleLoadMore = () => {
-    const { endCursor, hasNextPage } = data.pokemons.pageInfo;
+    const { endCursor } = data.pokemons.pageInfo;
 
     fetchMore({
-      variables: { after: endCursor, hasNextPage },
+      variables: { after: endCursor },
       updateQuery: (prevResult: any, { fetchMoreResult }) => {
-        // Return nothing when there are no more pokemons after current ones
-        if (hasNextPage === false) return;
-
         fetchMoreResult.pokemons.edges = [
           ...prevResult.pokemons.edges,
           ...fetchMoreResult.pokemons.edges,

@@ -40,13 +40,11 @@ function FilterByType() {
   }
 
   const handleLoadMore = () => {
-    const { endCursor, hasNextPage } = data.pokemonsByType.pageInfo;
+    const { endCursor } = data.pokemonsByType.pageInfo;
 
     fetchMore({
-      variables: { after: endCursor, hasNextPage },
+      variables: { after: endCursor },
       updateQuery: (prevResult: any, { fetchMoreResult }) => {
-        // Return nothing when there are no more pokemons after current ones
-        if (hasNextPage === false) return;
         fetchMoreResult.pokemonsByType.edges = [
           ...prevResult.pokemonsByType.edges,
           ...fetchMoreResult.pokemonsByType.edges,
