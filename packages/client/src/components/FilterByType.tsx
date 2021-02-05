@@ -12,7 +12,7 @@ function FilterByType() {
   const [typeFilter, setTypeFilter] = useState<string>('Normal');
 
   const { loading, error, data, fetchMore } = useQuery(FILTER_TYPE_QUERY, {
-    variables: { type: typeFilter, after: '000' },
+    variables: { type: typeFilter },
   });
 
   // Using a variable to conditionally render Show More button because with state I get error:
@@ -72,7 +72,7 @@ function FilterByType() {
       <div className='PokeTable'>
         <PokeTable pokemons={pokemon} error={error} loading={loading} />
       </div>
-      {isMore && <Button onClick={handleLoadMore}>Show Mor</Button>}
+      {isMore && <Button onClick={handleLoadMore}>Show More</Button>}
     </>
   );
 }

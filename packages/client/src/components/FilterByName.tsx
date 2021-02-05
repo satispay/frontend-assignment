@@ -8,7 +8,7 @@ import { SEARCH_NAME_QUERY } from '../Queries';
 function FilterByName() {
   const [searchText, setSearchText] = useState<string>('');
   const { loading, error, data, fetchMore } = useQuery(SEARCH_NAME_QUERY, {
-    variables: { after: '000', q: searchText },
+    variables: { q: searchText },
   });
 
   // Using a variable to conditionally render Show More button because with state I get error:
