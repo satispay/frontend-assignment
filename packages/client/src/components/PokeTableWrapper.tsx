@@ -16,8 +16,8 @@ type Pokemon = {
   classification: string;
 };
 
-const GET_POKEMON_QUERY = gql`
-  query GetPokemonQuery($q: String, $after: ID) {
+const SEARCH_NAME_QUERY = gql`
+  query SearchNameQuery($q: String, $after: ID) {
     pokemons(q: $q, after: $after) {
       edges {
         node {
@@ -44,7 +44,7 @@ function PokeTableWrapper() {
     setFilterType(e.target.value);
   };
 
-  const { loading, error, data, fetchMore } = useQuery(GET_POKEMON_QUERY, {
+  const { loading, error, data, fetchMore } = useQuery(SEARCH_NAME_QUERY, {
     variables: { after: '000', q: searchText },
   });
 
