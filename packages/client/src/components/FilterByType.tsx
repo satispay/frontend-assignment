@@ -15,8 +15,16 @@ function FilterByType() {
     variables: { type: typeFilter, after: '000' },
   });
 
+  // Using a variable to conditionally render Show More button because with state I get error:
+  // Too many re-renders. React limits the number of renders to prevent an infinite loop.”
+  let isMore: boolean = true;
+
   let pokemon;
   if (loading === false) {
+    if (data.pokemonsByType.pageInfo.hasNextPage === false) {
+      isMore = false;
+    }
+
     pokemon = data.pokemonsByType.edges.map((edge: PokemonEdge) => {
       return {
         key: edge.node.id,
@@ -64,7 +72,7 @@ function FilterByType() {
       <div className='PokeTable'>
         <PokeTable pokemons={pokemon} error={error} loading={loading} />
       </div>
-      <Button onClick={handleLoadMore}>Next Pokémon</Button>
+      {isMore && <Button onClick={handleLoadMore}>Show Mor</Button>}
     </>
   );
 }
