@@ -13,12 +13,12 @@ function FilterByName() {
 
   // Using a variable to conditionally render Show More button because with state I get error:
   // Too many re-renders. React limits the number of renders to prevent an infinite loop.”
-  let isMore: boolean = true;
+  let isMore: boolean = false;
 
   let pokemon;
   if (loading === false) {
-    if (data.pokemons.pageInfo.hasNextPage === false) {
-      isMore = false;
+    if (data.pokemons.pageInfo.hasNextPage) {
+      isMore = true;
     }
     pokemon = data.pokemons.edges.map((edge: PokemonEdge) => {
       return {
