@@ -53,7 +53,7 @@ function FilterByName() {
       <div className='PokeTable'>
         <PokeTable pokemons={pokemon} error={error} loading={loading} />
       </div>
-      <Button onClick={handleLoadMore}>Next 10 Pokémon</Button>
+      <Button onClick={handleLoadMore}>Next Pokémon</Button>
     </>
   );
 }
