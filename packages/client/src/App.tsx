@@ -3,7 +3,6 @@ import './App.css';
 import 'antd/dist/antd.css';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-import PokeTableWrapper from './components/PokeTableWrapper';
 import FilterWrapper from './components/FilterWrapper';
 
 const client = new ApolloClient({
