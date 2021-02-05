@@ -1,5 +1,7 @@
 # Satispay Frontend Recruitment Assignment
 
+![namePage](packages/client/public/namePage.png)
+
 ## Introduction
 
 The project is a single page (and a server app) for querying and filtering a dataset of Pokémons hardcoded in the project.
