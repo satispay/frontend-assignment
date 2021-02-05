@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Button, Input, Select } from 'antd';
+import React, { useState } from 'react';
+import { Button, Select } from 'antd';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
@@ -57,7 +57,6 @@ function FilterByType() {
   }
 
   function handleTypeSelect(event: string) {
-    console.log(`selected ${event}`);
     setTypeFilter(event);
   }
 
@@ -69,9 +68,9 @@ function FilterByType() {
       updateQuery: (prevResult: any, { fetchMoreResult }) => {
         // Return nothing when there are no more pokemons after current ones
         if (hasNextPage === false) return;
-        fetchMoreResult.pokemons.edges = [
-          ...prevResult.pokemons.edges,
-          ...fetchMoreResult.pokemons.edges,
+        fetchMoreResult.pokemonsByType.edges = [
+          ...prevResult.pokemonsByType.edges,
+          ...fetchMoreResult.pokemonsByType.edges,
         ];
         return fetchMoreResult;
       },
