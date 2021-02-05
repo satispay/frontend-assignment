@@ -58,15 +58,7 @@ function FilterType() {
         onChange={handleTypeSelect}
       >
         {pokeTypes.map((pokeType) => (
-          <Option
-            key={pokeType}
-            value={pokeType}
-            // onClick={() =>
-            //   executeSearch({
-            //     variables: { type: typeFilter },
-            //   })
-            // }
-          >
+          <Option key={pokeType} value={pokeType}>
             {pokeType}
           </Option>
         ))}
