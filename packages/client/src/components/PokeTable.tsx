@@ -1,13 +1,7 @@
 import React from 'react';
 import { ApolloError } from 'apollo-boost';
-import { Table } from 'antd';
-
-type Pokemon = {
-  id: string;
-  name: string;
-  types: Array<string>;
-  classification: string;
-};
+import { Alert, Spin, Table } from 'antd';
+import { Pokemon } from '../Types';
 interface PokeTableProps {
   pokemons: Array<Pokemon>;
   loading: boolean;
@@ -40,8 +34,11 @@ function PokeTable({ pokemons, loading, error }: PokeTableProps) {
     },
   ];
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Something went wrong</p>;
+  if (loading) return <Spin tip='Loading...' />;
+  if (error)
+    return (
+      <Alert message='Something went wrong... Please try again' type='error' />
+    );
 
   return <Table dataSource={pokemons} columns={columns} pagination={false} />;
 }
