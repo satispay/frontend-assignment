@@ -49,15 +49,19 @@ Implement `pokemonsByType` query: it accepts a `type: String` parameter and retu
 
 ### Client side
 
-Use components in `antd` library to create a page with this capabilities:
+In the bullet points, I describe how I met the challenges.
 
-- possibility to search Pokémons by name
-- possibility to filter Pokémons by type
-- display Pokémons search result in a table with columns:
-  - name
-  - type
-  - classification
-- if `hasNextPage` is true add the possibility to load more results.
+- User can search Pokémons by name
+
+  - In the `FilterByName` component, I use the [`useQuery`](https://www.apollographql.com/docs/react/data/queries/) hook by passing the user's input in the search bar to execute the `pokemons` query. The search bar follows incremental search based on the Pokémon name so that user gets feedback for each letter that he/she enters in search bar.
+
+- User can filter Pokémons by type
+  - In the `FilterByName` component, I use the [`useQuery`](https://www.apollographql.com/docs/react/data/queries/) hook by passing the user's selected type from the dropdown menu to execute the `pokemonsByType` query.
+
+* User can results of Pokémons search in a table with columns: `name`, `type`, `classification`
+  - In `FilterByName` and `FilterByType` components, I pass an array of `Pokemon` objects via `props` to the `PokeTable` based on user's search by name or filter by type
+* User can load more Pokemon table rows if `hasNextPage` is true
+  - I use the [`fetchMore`](https://www.apollographql.com/docs/react/pagination/core-api/#the-fetchmore-function) and [`updateQuery`](https://www.apollographql.com/docs/react/caching/advanced-topics/) functions from Apollo Client to combine the previous result of Pokemon to the subsequent ones based on the `endCursor` variable in either the `pokemons` or `pokemonsByType` query
 
 ## **Evaluation**
 
