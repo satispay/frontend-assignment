@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Button, Input } from 'antd';
+import { Button, Input, Radio, RadioChangeEvent } from 'antd';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
@@ -37,9 +37,17 @@ const GET_POKEMON_QUERY = gql`
 
 function PokeTableWrapper() {
   const [searchText, setSearchText] = useState<string>('');
+  const [filterType, setFilterType] = useState<string>('byName');
+
+  const onRadioChange = (e: RadioChangeEvent) => {
+    console.log('radio checked', e.target.value);
+    setFilterType(e.target.value);
+  };
+
   const { loading, error, data, fetchMore } = useQuery(GET_POKEMON_QUERY, {
     variables: { after: '000', q: searchText },
   });
+
   let result;
   if (loading === false) {
     result = data.pokemons.edges.map((edge: PokemonEdge) => {
@@ -71,6 +79,17 @@ function PokeTableWrapper() {
 
   return (
     <>
+      <div>
+        <Radio.Group
+          defaultValue='byName'
+          buttonStyle='solid'
+          onChange={onRadioChange}
+        >
+          <Radio.Button value='byName'>Name</Radio.Button>
+          <Radio.Button value='byType'>Type</Radio.Button>
+        </Radio.Group>
+      </div>
+
       <FilterType />
       <Input
         type='text'
