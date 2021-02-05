@@ -50,7 +50,7 @@ function FilterByName() {
       <Input
         type='text'
         placeholder='Search Pokémon by name...'
-        style={{ width: 300 }}
+        style={{ width: 200 }}
         onChange={(event: ChangeEvent<HTMLInputElement>) =>
           setSearchText(event.target.value)
         }
