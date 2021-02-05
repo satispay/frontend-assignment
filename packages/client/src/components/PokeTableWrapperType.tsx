@@ -3,7 +3,6 @@ import { Button, Input, Select } from 'antd';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
-import FilterType from './FilterType';
 import { pokeTypes } from '../constants/index';
 
 const { Option } = Select;
@@ -18,25 +17,6 @@ type Pokemon = {
   types: Array<string>;
   classification: string;
 };
-
-const GET_POKEMON_QUERY = gql`
-  query GetPokemonQuery($q: String, $after: ID) {
-    pokemons(q: $q, after: $after) {
-      edges {
-        node {
-          name
-          types
-          id
-          classification
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-`;
 
 const FILTER_TYPE_QUERY = gql`
   query FilterTypeQuery($type: String!, $after: ID) {
@@ -58,12 +38,7 @@ const FILTER_TYPE_QUERY = gql`
 `;
 
 function PokeTableWrapper() {
-  const [searchText, setSearchText] = useState<string>('');
   const [typeFilter, setTypeFilter] = useState<string>('Normal');
-
-  // const { loading, error, data, fetchMore } = useQuery(GET_POKEMON_QUERY, {
-  //   variables: { after: '000', q: searchText },
-  // });
 
   const { loading, error, data, fetchMore } = useQuery(FILTER_TYPE_QUERY, {
     variables: { type: typeFilter, after: '000' },
@@ -87,7 +62,7 @@ function PokeTableWrapper() {
   }
 
   const handleLoadMore = () => {
-    const { endCursor, hasNextPage } = data.pokemons.pageInfo;
+    const { endCursor, hasNextPage } = data.pokemonsByType.pageInfo;
 
     fetchMore({
       variables: { after: endCursor, hasNextPage },
@@ -105,7 +80,6 @@ function PokeTableWrapper() {
 
   return (
     <>
-      {/* <FilterType /> */}
       <Select
         defaultValue='Normal'
         style={{ width: 120 }}
@@ -117,14 +91,6 @@ function PokeTableWrapper() {
           </Option>
         ))}
       </Select>
-      <Input
-        type='text'
-        placeholder='Search Pokémon by name...'
-        style={{ width: 300 }}
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setSearchText(event.target.value)
-        }
-      />
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
       </div>
