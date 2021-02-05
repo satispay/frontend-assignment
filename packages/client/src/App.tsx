@@ -14,6 +14,7 @@ function App() {
     <ApolloProvider client={client}>
       <div className='App'>
         <h1>Interactive Pokédex</h1>
+        <h2>Have fun finding your Pokémon!</h2>
         <FilterWrapper />
       </div>
     </ApolloProvider>
