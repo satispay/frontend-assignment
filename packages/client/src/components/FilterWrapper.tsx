@@ -10,7 +10,7 @@ function FilterWrapper() {
   };
   return (
     <>
-      <div>
+      <div style={{ paddingBottom: 20 }}>
         <Radio.Group
           defaultValue='byName'
           buttonStyle='solid'
