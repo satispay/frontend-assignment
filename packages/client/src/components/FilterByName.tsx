@@ -30,9 +30,9 @@ function FilterByName() {
     variables: { after: '000', q: searchText },
   });
 
-  let result;
+  let pokemon;
   if (loading === false) {
-    result = data.pokemons.edges.map((edge: PokemonEdge) => {
+    pokemon = data.pokemons.edges.map((edge: PokemonEdge) => {
       return {
         key: edge.node.id,
         name: edge.node.name,
@@ -70,7 +70,7 @@ function FilterByName() {
         }
       />
       <div className='PokeTable'>
-        <PokeTable pokemons={result} error={error} loading={loading} />
+        <PokeTable pokemons={pokemon} error={error} loading={loading} />
       </div>
       <Button onClick={handleLoadMore}>Next 10 Pokémon</Button>
     </>

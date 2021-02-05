@@ -34,9 +34,9 @@ function FilterByType() {
     variables: { type: typeFilter, after: '000' },
   });
 
-  let result;
+  let pokemon;
   if (loading === false) {
-    result = data.pokemonsByType.edges.map((edge: PokemonEdge) => {
+    pokemon = data.pokemonsByType.edges.map((edge: PokemonEdge) => {
       return {
         key: edge.node.id,
         name: edge.node.name,
@@ -81,7 +81,7 @@ function FilterByType() {
         ))}
       </Select>
       <div className='PokeTable'>
-        <PokeTable pokemons={result} error={error} loading={loading} />
+        <PokeTable pokemons={pokemon} error={error} loading={loading} />
       </div>
       <Button onClick={handleLoadMore}>Next 10 Pokémon</Button>
     </>
