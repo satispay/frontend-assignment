@@ -35,8 +35,8 @@ function FilterByType() {
     });
   }
 
-  function handleTypeSelect(event: string) {
-    setTypeFilter(event);
+  function handleTypeSelect(selectedValue: string) {
+    setTypeFilter(selectedValue);
   }
 
   const handleLoadMore = () => {
