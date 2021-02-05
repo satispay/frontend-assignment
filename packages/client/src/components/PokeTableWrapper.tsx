@@ -90,15 +90,18 @@ function PokeTableWrapper() {
         </Radio.Group>
       </div>
 
-      <FilterType />
-      <Input
-        type='text'
-        placeholder='Search Pokémon by name...'
-        style={{ width: 300 }}
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
-          setSearchText(event.target.value)
-        }
-      />
+      {filterType === 'byType' && <FilterType />}
+      {filterType === 'byName' && (
+        <Input
+          type='text'
+          placeholder='Search Pokémon by name...'
+          style={{ width: 300 }}
+          onChange={(event: ChangeEvent<HTMLInputElement>) =>
+            setSearchText(event.target.value)
+          }
+        />
+      )}
+
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
       </div>
