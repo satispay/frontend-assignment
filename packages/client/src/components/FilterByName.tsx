@@ -1,28 +1,9 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Button, Input } from 'antd';
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
-import { PokemonEdge } from '../Types/index';
-
-const SEARCH_NAME_QUERY = gql`
-  query SearchNameQuery($q: String, $after: ID) {
-    pokemons(q: $q, after: $after) {
-      edges {
-        node {
-          name
-          types
-          id
-          classification
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-`;
+import { PokemonEdge } from '../Types';
+import { SEARCH_NAME_QUERY } from '../Queries';
 
 function FilterByName() {
   const [searchText, setSearchText] = useState<string>('');

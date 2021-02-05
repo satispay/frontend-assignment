@@ -1,31 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Select } from 'antd';
-import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
-import { pokeTypes } from '../constants/index';
-import { PokemonEdge } from '../Types/index';
+import { pokeTypes } from '../constants';
+import { PokemonEdge } from '../Types';
+import { FILTER_TYPE_QUERY } from '../Queries';
 
 const { Option } = Select;
-
-const FILTER_TYPE_QUERY = gql`
-  query FilterTypeQuery($type: String!, $after: ID) {
-    pokemonsByType(type: $type, after: $after) {
-      edges {
-        node {
-          name
-          types
-          id
-          classification
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }
-  }
-`;
 
 function FilterByType() {
   const [typeFilter, setTypeFilter] = useState<string>('Normal');
