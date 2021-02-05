@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button } from 'antd';
+import React, { ChangeEvent, useState } from 'react';
+import { Button, Input } from 'antd';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 import PokeTable from './PokeTable';
@@ -16,9 +16,9 @@ type Pokemon = {
   classification: string;
 };
 
-const getPokemonQuery = gql`
-  query pokeQuery($after: ID) {
-    pokemons(after: $after) {
+const GET_POKEMON_QUERY = gql`
+  query GetPokemonQuery($q: String, $after: ID) {
+    pokemons(q: $q, after: $after) {
       edges {
         node {
           name
@@ -36,8 +36,9 @@ const getPokemonQuery = gql`
 `;
 
 function PokeTableWrapper() {
-  const { loading, error, data, fetchMore } = useQuery(getPokemonQuery, {
-    variables: { after: '000' },
+  const [searchText, setSearchText] = useState<string>('');
+  const { loading, error, data, fetchMore } = useQuery(GET_POKEMON_QUERY, {
+    variables: { after: '000', q: searchText },
   });
   let result;
   if (loading === false) {
@@ -71,6 +72,14 @@ function PokeTableWrapper() {
   return (
     <>
       <FilterType />
+      <Input
+        type='text'
+        placeholder='Search Pokémon by name...'
+        style={{ width: 300 }}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          setSearchText(event.target.value)
+        }
+      />
       <div className='PokeTable'>
         <PokeTable pokemons={result} error={error} loading={loading} />
       </div>
