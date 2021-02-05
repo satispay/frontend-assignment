@@ -5,8 +5,8 @@ import FilterByType from './FilterByType';
 
 function FilterWrapper() {
   const [filterType, setFilterType] = useState<string>('byName');
-  const onRadioChange = (e: RadioChangeEvent) => {
-    setFilterType(e.target.value);
+  const onRadioChange = (event: RadioChangeEvent) => {
+    setFilterType(event.target.value);
   };
   return (
     <>
@@ -20,10 +20,8 @@ function FilterWrapper() {
           <Radio.Button value='byType'>Type</Radio.Button>
         </Radio.Group>
       </div>
-      <div>
-        {filterType === 'byName' && <FilterByName />}
-        {filterType === 'byType' && <FilterByType />}
-      </div>
+      {filterType === 'byName' && <FilterByName />}
+      {filterType === 'byType' && <FilterByType />}
     </>
   );
 }
