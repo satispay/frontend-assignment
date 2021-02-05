@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { Button, Input, Radio, RadioChangeEvent } from 'antd';
-import PokeTableWrapper from './PokeTableWrapper';
-import PokeTableWrapperType from './PokeTableWrapperType';
+import FilterByName from './FilterByName';
+import FilterByType from './FilterByType';
 
 function FilterWrapper() {
   const [filterType, setFilterType] = useState<string>('byName');
@@ -20,8 +20,8 @@ function FilterWrapper() {
         <Radio.Button value='byType'>Type</Radio.Button>
       </Radio.Group>
 
-      {filterType === 'byName' && <PokeTableWrapper />}
-      {filterType === 'byType' && <PokeTableWrapperType />}
+      {filterType === 'byName' && <FilterByName />}
+      {filterType === 'byType' && <FilterByType />}
     </div>
   );
 }
