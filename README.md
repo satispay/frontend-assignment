@@ -38,9 +38,11 @@ This project is powered by `yarn` and workspaces.
 
 Implement `pokemonsByType` query: it accepts a `type: String` parameter and return a connection of Pokèmons.
 
-## Components
+- Used [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [`indexOf`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) to look for Pokémon based on a selected `type`
 
-- **FilterWrapper:** Wrapper to conditionally render FilterByName or FilterByType component
+### Components
+
+- **FilterWrapper:** Wrapper to conditionally render `FilterByName` or `FilterByType` component
 - **FilterByName:** Search Pokémon by name
 - **FilterByType:** Filter Pokémon by type
 - **PokeTable:** Table displaying pokemon data based on search by name OR filter by type
