@@ -52,7 +52,8 @@ You can submit your work through:
 - [Glitch](https://glitch.com)
 - ...other
 
-The code must be available to us in order to evaluate your submission.
+The code must be available to us in order to evaluate your submission.  
+When completing the assignment, please notify the HR and remember to include your code or the link to the exercise.
 
 ## **Evaluation**
 
